@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vercel-blog.vercel.app/sitemap.xml
+Sitemap: https://coupon-code-review.vercel.app//sitemap.xml
