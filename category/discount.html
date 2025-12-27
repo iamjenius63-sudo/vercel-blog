@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount - Lifetime Deals</title>
+    <meta name="description"
+        content="Browse all Discount deals and discounts. Find the best lifetime deals and save money!">
+    <meta name="keywords" content="Discount, lifetime deals, software discounts, one-time payment">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Discount - Lifetime Deals">
+    <meta property="og:description" content="Browse all Discount deals and discounts.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            /* Slate-50 */
+            min-height: 100vh;
+            color: #1e293b;
+            /* Slate-800 */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Brand Gradient Header */
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(118, 75, 162, 0.2);
+            color: white;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .category-header {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            width: 100%;
+            border-radius: 0 0 2.5rem 2.5rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.15);
+        }
+
+        .category-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 0;
+            padding: 4rem 0;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+
+        .post-image {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-content h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 0.75rem;
+        }
+
+        .post-excerpt {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #764ba2;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 2rem;
+            top: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 16px;
+            color: #718096;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .post-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 5rem 2rem 2rem;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="https://coupon-code-review.vercel.app/" class="logo">💎 Lifetime Deals</a>
+            <ul class="nav-links">
+                <li><a href="https://coupon-code-review.vercel.app/">Home</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/discount.html">Discount</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/reviews.html">Reviews</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/custom-app.html">Custom App</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="category-header">
+        <div class="container" style="padding: 0;">
+            <a href="https://coupon-code-review.vercel.app/" class="back-link">← Back to Home</a>
+            <h1>📁 Discount</h1>
+            <p>Browse all posts in this category</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="posts-grid" id="postsGrid">
+            <!-- Posts will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo"
+                    style="margin-bottom: 1.5rem; display: block; font-size: 1.5rem; font-weight: 800; color: white;">💎
+                    Lifetime Discount</div>
+                <p>Curating the best software deals and lifetime discounts. Save thousands on your tech stack with
+                    one-time payments.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="https://coupon-code-review.vercel.app/">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="https://coupon-code-review.vercel.app/category/discount.html">Discount</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/reviews.html">Reviews</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/custom-app.html">Custom App</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Lifetime Discount. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const posts = [];
+
+        function renderPosts() {
+            const grid = document.getElementById('postsGrid');
+
+            if (posts.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <h3>No posts yet</h3>
+                        <p>Check back soon for new content in this category!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = posts.map(post => `
+                <article class="post-card">
+                    <div class="post-image">
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}">` : '💎'}
+                    </div>
+                    <div class="post-content">
+                        <h2>${post.title}</h2>
+                        <div class="post-meta">📅 ${post.date} • ⏱️ ${post.readTime || 5} min read</div>
+                        <p class="post-excerpt">${post.excerpt}</p>
+                        <a href="${post.url}" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        renderPosts();
+    </script>
+</body>
+
+</html>
