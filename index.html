@@ -4,10 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lifetime Discount - Best Software Deals & Discounts</title>
+    <title>Lifetime Deals - Best Software Deals & Discounts</title>
     <meta name="description"
         content="Discover the best lifetime software deals, SaaS discounts, and AppSumo alternatives. Save money on premium tools with one-time payments.">
     <meta name="keywords" content="lifetime deals, software discounts, saas deals, appsumo alternatives">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lifetime Deals - Best Software Deals">
+    <meta property="og:description" content="Discover the best lifetime software deals and save money!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://coupon-code-review.vercel.app/">
+    <meta property="og:image" content="https://coupon-code-review.vercel.app//images/og-homepage.jpg">
+    <meta property="og:site_name" content="Lifetime Discount">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lifetime Deals - Best Software Deals">
+    <meta name="twitter:description" content="Discover the best lifetime software deals. Save money!">
+    <meta name="twitter:image" content="https://coupon-code-review.vercel.app//images/og-homepage.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://coupon-code-review.vercel.app/">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Lifetime Deals - Best Software Deals",
+        "description": "Discover the best lifetime software deals, SaaS discounts, and AppSumo alternatives.",
+        "url": "https://coupon-code-review.vercel.app/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Lifetime Discount"
+        }
+    }
+    </script>
+
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -16,27 +57,38 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            color: #334155;
+            /* Slate-700 for better readability */
+            -webkit-font-smoothing: antialiased;
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: -0.025em;
+        }
+
+        /* Navbar - positioned over the hero */
+        .navbar {
+            background: transparent;
+            padding: 1.5rem 2rem;
+            position: absolute;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            left: 0;
+            z-index: 1000;
         }
 
-        nav {
+        .navbar-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -44,7 +96,11 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 800;
+            color: white;
+            /* Clean White Logo */
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links {
@@ -54,13 +110,16 @@
         }
 
         .nav-links a {
-            color: white;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: opacity 0.3s;
+            font-weight: 600;
+            transition: color 0.3s, opacity 0.3s;
         }
 
         .nav-links a:hover {
-            opacity: 0.8;
+            color: white;
+            opacity: 1;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         /* Search */
@@ -84,39 +143,59 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Hero */
+        /* Hero Section - The only place with the big gradient */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 9rem 2rem 5rem;
+            /* More top padding for navbar */
             text-align: center;
+            border-radius: 0 0 2.5rem 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px -10px rgba(102, 126, 234, 0.4);
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
+            /* Larger, more impactful */
+            font-weight: 800;
             margin-bottom: 1rem;
+            letter-spacing: -0.05em;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        /* Main Content */
+        /* Main Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
+            /* Increased from 1200px */
             margin: 2rem auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 2rem;
+            grid-template-columns: 1fr 280px;
+            /* Main content gets more space, sidebar narrower */
+            gap: 3rem;
+            /* Increased gap for better separation */
         }
 
-        /* Blog Posts */
+        main {
+            min-width: 0;
+        }
+
+        /* Blog Posts Grid */
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            /* 3 posts per row */
             gap: 2rem;
+            margin-top: 1rem;
         }
 
         @media (max-width: 1024px) {
@@ -133,20 +212,46 @@
 
         .post-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            height: 100%;
+            /* Ensure all cards in a row have same height */
+        }
+
+        .post-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .post-card:hover::before {
+            opacity: 1;
         }
 
         .post-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(102, 126, 234, 0.3);
         }
 
         .post-image {
             width: 100%;
             aspect-ratio: 16 / 9;
+            /* FIXED ASPECT RATIO */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
@@ -154,6 +259,7 @@
             color: white;
             font-size: 3rem;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .post-image img {
@@ -163,35 +269,90 @@
         }
 
         .post-content {
-            padding: 1.5rem;
+            padding: 1rem;
+            /* Reduced padding */
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 0.5rem;
         }
 
-        .post-card h2 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
+        .post-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0;
+            color: #1e293b;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            font-weight: 700;
         }
 
         .post-meta {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            margin: 0;
         }
 
         .post-excerpt {
-            color: #555;
-            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #475569;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        /* Section Headers - RIGHT ALIGNED BUTTONS */
+        .section-header {
+            display: flex !important;
+            flex-direction: row !important;
+            /* Ensure horizontal */
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            width: 100% !important;
+        }
+
+        .section-header h2 {
+            color: #1e293b;
+            font-size: 1.5rem;
+            /* Slightly smaller for better fit */
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .view-all {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            background: rgba(102, 126, 234, 0.08);
+            white-space: nowrap;
+            /* Prevent wrapping */
+        }
+
+        .view-all:hover {
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateX(4px);
         }
 
         .read-more {
             color: #667eea;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .read-more:hover {
-            color: #764ba2;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
         }
 
         /* Sidebar */
@@ -202,16 +363,26 @@
         }
 
         .sidebar-widget {
-            background: white;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: 16px;
             margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(102, 126, 234, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sidebar-widget:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(102, 126, 234, 0.15);
         }
 
         .sidebar-widget h3 {
             color: #667eea;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .related-post {
@@ -235,55 +406,160 @@
 
         /* Footer */
         footer {
-            background: #2c3e50;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 2rem;
+            padding: 5rem 2rem 2rem;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
-            margin-top: 4rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
         }
 
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
 
-            .sidebar {
-                display: none;
+            .container .sidebar {
+                width: 100%;
+                order: -1;
+                /* Show sidebar (trending posts) above main content on mobile */
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">💎 Lifetime Discount</div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="#latest">Latest Deals</a></li>
-                <li><a href="#trending">Trending</a></li>
-            </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search deals..." id="searchInput">
-                <span>🔍</span>
+    <!-- Hero Section with Navbar Overlay -->
+    <div class="hero-wrapper" style="position: relative;">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="https://coupon-code-review.vercel.app/" class="logo">💎 Lifetime Discount</a>
+                <ul class="nav-links">
+                    <li><a href="https://coupon-code-review.vercel.app/">Home</a></li>
+                    <li><a href="https://coupon-code-review.vercel.app/category/discount.html">Discount</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/reviews.html">Reviews</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/custom-app.html">Custom App</a></li>
+                </ul>
             </div>
         </nav>
-    </header>
 
-    <!-- Hero -->
-    <div class="hero">
-        <h1>Best Lifetime Software Deals</h1>
-        <p>Save money on premium tools with one-time payments. No subscriptions!</p>
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Latest Posts & Software Reviews</h1>
+            <p>Save money on premium tools with one-time payments. No subscriptions!</p>
+        </div>
     </div>
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Posts -->
+        <!-- Main Feed -->
         <main>
-            <div class="posts-grid" id="postsGrid">
-                <!-- Posts will be loaded here -->
-            </div>
+            <!-- LATEST POSTS SECTION (General Category) -->
+            <section class="category-section">
+                <div class="section-header"
+                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
+                    <h2>Latest Posts</h2>
+                    <a href="/category/general.html" class="view-all">View All →</a>
+                </div>
+                <div class="posts-grid" id="latest-posts-grid">
+                    <!-- Posts rendered by JS -->
+                </div>
+            </section>
+
+            <!-- DISCOUNT SECTION -->
+            <section class="category-section" style="margin-top: 4rem;">
+                <div class="section-header"
+                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
+                    <h2>Discount Deals</h2>
+                    <a href="/category/discount.html" class="view-all">View All →</a>
+                </div>
+                <div class="posts-grid" id="discount-posts-grid">
+                    <!-- Posts rendered by JS -->
+                </div>
+            </section>
+
+            <!-- REVIEWS SECTION -->
+            <section class="category-section" style="margin-top: 4rem;">
+                <div class="section-header"
+                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
+                    <h2>Software Reviews</h2>
+                    <a href="/category/reviews.html" class="view-all">View All →</a>
+                </div>
+                <div class="posts-grid" id="reviews-posts-grid">
+                    <!-- Posts rendered by JS -->
+                </div>
+            </section>
+
+            <!-- CUSTOM APP SECTION -->
+            <section class="category-section" style="margin-top: 4rem;">
+                <div class="section-header"
+                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
+                    <h2>Custom App</h2>
+                    <a href="/category/custom-app.html" class="view-all">View All →</a>
+                </div>
+                <div class="posts-grid" id="custom-app-posts-grid">
+                    <!-- Posts rendered by JS -->
+                </div>
+            </section>
         </main>
 
         <!-- Sidebar -->
@@ -291,17 +567,7 @@
             <div class="sidebar-widget">
                 <h3>🔥 Trending Posts</h3>
                 <div id="trendingPosts">
-                    <!-- Trending posts will be loaded here -->
-                </div>
-            </div>
-
-            <div class="sidebar-widget">
-                <h3>📚 Categories</h3>
-                <div>
-                    <p><a href="#" style="color: #667eea;">All Deals</a></p>
-                    <p><a href="#" style="color: #667eea;">SaaS Tools</a></p>
-                    <p><a href="#" style="color: #667eea;">Design Software</a></p>
-                    <p><a href="#" style="color: #667eea;">Marketing Tools</a></p>
+                    <!-- Dynamic Content -->
                 </div>
             </div>
         </aside>
@@ -309,34 +575,102 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Lifetime Discount. All rights reserved.</p>
-        <p>Find the best software deals and save money!</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 1.5rem; display: block;">💎 Lifetime Discount</div>
+                <p>Curating the best software deals and lifetime discounts. Save thousands on your tech stack with
+                    one-time payments.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="https://coupon-code-review.vercel.app/">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="https://coupon-code-review.vercel.app/category/discount.html">Discount</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/reviews.html">Reviews</a></li>
+                <li><a href="https://coupon-code-review.vercel.app/category/custom-app.html">Custom App</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Lifetime Discount. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // This will be populated by the CMS
-        const posts = [
+        // Data injected by server
+        const latestPosts = [
   {
+    "image": "https://coupon-code-review.vercel.app//images/default.jpg",
+    "description": "",
+    "category": "general",
     "title": "Is it really working",
     "url": "https://coupon-code-review.vercel.app//blog/is-it-really-working.html",
-    "date": "14/12/2025",
-    "excerpt": "Amazing Lifetime Deal!",
+    "date": "December 27, 2025",
     "readTime": 5,
-    "views": 267
+    "views": 336
+  }
+];
+        const discountPosts = [];
+        const reviewsPosts = [];
+        const customAppPosts = [];
+        const categories = [
+  {
+    "id": "general",
+    "name": "General",
+    "slug": "general",
+    "isDefault": true
+  },
+  {
+    "id": "discount",
+    "name": "Discount",
+    "slug": "discount"
+  },
+  {
+    "id": "reviews",
+    "name": "Reviews",
+    "slug": "reviews"
+  },
+  {
+    "id": "custom-app",
+    "name": "Custom App",
+    "slug": "custom-app"
   }
 ];
 
-        function renderPosts(postsToRender) {
-            const grid = document.getElementById('postsGrid');
+        function renderPosts(postsToRender, gridId) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+
+            const section = grid.closest('.category-section') || grid.closest('section');
+
+            if (!postsToRender || postsToRender.length === 0) {
+                if (section) {
+                    section.style.display = 'none';
+                    // Also hide any previous headings/hr if they exist
+                    let prev = section.previousElementSibling;
+                    if (prev && prev.tagName === 'HR') prev.style.display = 'none';
+                }
+                return;
+            }
+
+            if (section) section.style.display = 'block';
 
             grid.innerHTML = postsToRender.map(post => `
                 <article class="post-card">
                     <div class="post-image">
-                        💎
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}">` : '<div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center; background:#f1f5f9; font-size:2rem;">💎</div>'}
                     </div>
                     <div class="post-content">
-                        <h2>${post.title}</h2>
-                        <div class="post-meta">📅 ${post.date} • ⏱️ ${post.readTime} min read</div>
+                        <h3>${post.title}</h3>
+                        <div class="post-meta">📅 ${post.date}</div>
                         <p class="post-excerpt">${post.excerpt}</p>
                         <a href="${post.url}" class="read-more">Read More →</a>
                     </div>
@@ -344,28 +678,41 @@
             `).join('');
         }
 
-        function loadTrendingPosts() {
-            const trending = posts.slice(0, 5);
-            document.getElementById('trendingPosts').innerHTML = trending.map(post => `
-                <div class="related-post">
-                    <a href="${post.url}">${post.title}</a>
+        function renderTrending() {
+            const container = document.getElementById('trendingPosts');
+            if (!container) return;
+
+            const trending = latestPosts.slice(0, 5);
+            container.innerHTML = trending.map(post => `
+                <div class="related-post" style="padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                    <a href="${post.url}" style="color: #334155; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;">
+                        ${post.title}
+                    </a>
                 </div>
             `).join('');
+
+            if (trending.length === 0) {
+                container.innerHTML = '<p style="color: #94a3b8; font-size: 0.9rem;">Coming soon...</p>';
+            }
         }
 
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const filtered = posts.filter(post =>
-                post.title.toLowerCase().includes(query) ||
-                post.excerpt.toLowerCase().includes(query)
-            );
-            renderPosts(filtered);
-        });
+        function init() {
+            // Render posts for each category (3 posts each)
+            renderPosts(latestPosts.slice(0, 3), 'latest-posts-grid');
+            renderPosts(discountPosts.slice(0, 3), 'discount-posts-grid');
+            renderPosts(reviewsPosts.slice(0, 3), 'reviews-posts-grid');
+            renderPosts(customAppPosts.slice(0, 3), 'custom-app-posts-grid');
 
-        // Initial render
-        renderPosts(posts);
-        loadTrendingPosts();
+            // Render trending sidebar
+            renderTrending();
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 
