@@ -513,50 +513,24 @@
     <div class="container">
         <!-- Main Feed -->
         <main>
-            <!-- LATEST POSTS SECTION (General Category) -->
+            <!-- Dynamic Category Filter Bar -->
+            <div class="filter-container" style="margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+                <button class="filter-btn active" data-category="all" onclick="filterCategory('all', this)" style="padding: 0.5rem 1.2rem; border-radius: 9999px; border: 1px solid #667eea; background: #667eea; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                    All Articles
+                </button>
+                <div id="dynamicCategoryButtons" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                    <!-- Injected dynamically by JS -->
+                </div>
+            </div>
+
+            <!-- Unified Posts Grid -->
             <section class="category-section">
                 <div class="section-header"
                     style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
-                    <h2>Latest Posts</h2>
-                    <a href="#latest-posts-grid" class="view-all">View All ↓</a>
+                    <h2 id="grid-header-title">All Published Articles</h2>
+                    <span id="post-count-badge" style="background:#e0e7ff; color:#3730a3; padding:0.25rem 0.75rem; border-radius:9999px; font-size:0.85rem; font-weight:700;"></span>
                 </div>
-                <div class="posts-grid" id="latest-posts-grid">
-                    <!-- Posts rendered by JS -->
-                </div>
-            </section>
-
-            <!-- DISCOUNT SECTION -->
-            <section class="category-section" style="margin-top: 4rem;">
-                <div class="section-header"
-                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
-                    <h2>Discount Deals</h2>
-                    <a href="#discount-posts-grid" class="view-all">View All ↓</a>
-                </div>
-                <div class="posts-grid" id="discount-posts-grid">
-                    <!-- Posts rendered by JS -->
-                </div>
-            </section>
-
-            <!-- REVIEWS SECTION -->
-            <section class="category-section" style="margin-top: 4rem;">
-                <div class="section-header"
-                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
-                    <h2>Software Reviews</h2>
-                    <a href="#reviews-posts-grid" class="view-all">View All ↓</a>
-                </div>
-                <div class="posts-grid" id="reviews-posts-grid">
-                    <!-- Posts rendered by JS -->
-                </div>
-            </section>
-
-            <!-- CUSTOM APP SECTION -->
-            <section class="category-section" style="margin-top: 4rem;">
-                <div class="section-header"
-                    style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
-                    <h2>Custom App</h2>
-                    <a href="#custom-app-posts-grid" class="view-all">View All ↓</a>
-                </div>
-                <div class="posts-grid" id="custom-app-posts-grid">
+                <div class="posts-grid" id="main-posts-grid">
                     <!-- Posts rendered by JS -->
                 </div>
             </section>
@@ -606,7 +580,7 @@
 
     <script>
         // Data injected by server
-        const latestPosts = [
+        const allPosts = [
   {
     "image": "https://softreviewed-images.pages.dev/neuronwriter/cover-fbbf49b25284.jpg",
     "description": "NeuronWriter vs Alternative Solutions: Complete Industry Comparison - In-depth technical breakdown and comprehensive tutorial.",
@@ -615,7 +589,7 @@
     "url": "https://coupon-code-review.vercel.app//seotools/neuronwriter-vs-alternative-solutions.html",
     "date": "August 24, 2026",
     "readTime": 5,
-    "views": 274
+    "views": 815
   },
   {
     "image": "https://softreviewed-images.pages.dev/neuronwriter/banner-35317c971c63.jpg",
@@ -625,22 +599,29 @@
     "url": "https://coupon-code-review.vercel.app//seotools/neuronwriter-vs-surfer-seo-comparison.html",
     "date": "August 24, 2026",
     "readTime": 5,
-    "views": 218
+    "views": 60
   },
   {
-    "image": "https://coupon-code-review.vercel.app//images/default.jpg",
-    "description": "Test description",
-    "category": "SEO Tools",
-    "title": "NeuronWriter SEO Content Optimization Masterclass",
-    "url": "https://coupon-code-review.vercel.app//seotools/probe-test-neuronwriter.html",
+    "image": "https://softreviewed-images.pages.dev/createstudio/cover-8be420725ae8.jpg",
+    "description": "The 9 Best CreateStudio Alternatives for Video Creators & Agencies - In-depth technical breakdown and comprehensive tutorial.",
+    "category": "Video Creation",
+    "title": "The 9 Best CreateStudio Alternatives for Video Creators & Agencies",
+    "url": "https://coupon-code-review.vercel.app//videocreation/createstudio-alternatives-best-animation-software.html",
     "date": "August 24, 2026",
     "readTime": 5,
-    "views": 57
+    "views": 451
+  },
+  {
+    "image": "https://softreviewed-images.pages.dev/videoexpress/cover-f0e7d93509eb.jpg",
+    "description": "The 9 Best VideoExpress AI Alternatives for Video Creators & Agencies - In-depth technical breakdown and comprehensive tutorial.",
+    "category": "Video Creation",
+    "title": "The 9 Best VideoExpress AI Alternatives for Video Creators & Agencies",
+    "url": "https://coupon-code-review.vercel.app//videocreation/videoexpress-ai-alternatives-competitor-review.html",
+    "date": "August 24, 2026",
+    "readTime": 5,
+    "views": 348
   }
 ];
-        const discountPosts = [];
-        const reviewsPosts = [];
-        const customAppPosts = [];
         const categories = [
   {
     "id": "general",
@@ -665,31 +646,91 @@
   }
 ];
 
-        function renderPosts(postsToRender, gridId) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return;
+        let currentCategory = 'all';
 
-            const section = grid.closest('.category-section') || grid.closest('section');
+        function formatCategoryName(cat) {
+            if (!cat || cat === 'undefined' || cat === 'general') return 'General';
+            return cat
+                .replace(/[-_]+/g, ' ')
+                .split(' ')
+                .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+                .join(' ');
+        }
 
-            if (!postsToRender || postsToRender.length === 0) {
-                if (section) {
-                    section.style.display = 'none';
-                    // Also hide any previous headings/hr if they exist
-                    let prev = section.previousElementSibling;
-                    if (prev && prev.tagName === 'HR') prev.style.display = 'none';
-                }
-                return;
+        function renderCategoryButtons() {
+            const container = document.getElementById('dynamicCategoryButtons');
+            if (!container) return;
+
+            // Extract unique categories from actual posts
+            const catMap = new Map();
+            allPosts.forEach(post => {
+                const cat = (post.category || 'general').toLowerCase().trim();
+                catMap.set(cat, (catMap.get(cat) || 0) + 1);
+            });
+
+            const buttonsHtml = Array.from(catMap.entries()).map(([cat, count]) => {
+                const displayName = formatCategoryName(cat);
+                return `
+                    <button class="filter-btn" data-category="${cat}" onclick="filterCategory('${cat}', this)" style="padding: 0.5rem 1.2rem; border-radius: 9999px; border: 1px solid #cbd5e1; background: white; color: #475569; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                        ${displayName} (${count})
+                    </button>
+                `;
+            }).join('');
+
+            container.innerHTML = buttonsHtml;
+        }
+
+        function filterCategory(cat, btnElement) {
+            currentCategory = cat;
+
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.style.background = 'white';
+                btn.style.color = '#475569';
+                btn.style.borderColor = '#cbd5e1';
+            });
+            if (btnElement) {
+                btnElement.style.background = '#667eea';
+                btnElement.style.color = 'white';
+                btnElement.style.borderColor = '#667eea';
             }
 
-            if (section) section.style.display = 'block';
+            const header = document.getElementById('grid-header-title');
+            if (header) {
+                header.textContent = cat === 'all' ? 'All Published Articles' : `${formatCategoryName(cat)} Articles`;
+            }
+
+            const filtered = cat === 'all' 
+                ? allPosts 
+                : allPosts.filter(p => (p.category || 'general').toLowerCase().trim() === cat.toLowerCase().trim());
+
+            renderMainGrid(filtered);
+        }
+
+        function renderMainGrid(postsToRender) {
+            const grid = document.getElementById('main-posts-grid');
+            const countBadge = document.getElementById('post-count-badge');
+            if (!grid) return;
+
+            if (countBadge) {
+                countBadge.textContent = `${postsToRender.length} ${postsToRender.length === 1 ? 'Article' : 'Articles'}`;
+            }
+
+            if (!postsToRender || postsToRender.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; color:#64748b;">No articles found in this category.</div>';
+                return;
+            }
 
             grid.innerHTML = postsToRender.map(post => {
                 const excerptText = (post.excerpt && post.excerpt !== 'undefined') ? post.excerpt : ((post.description && post.description !== 'undefined') ? post.description : '');
                 const dateText = (post.date && post.date !== 'undefined') ? post.date : 'Recent';
+                const catText = formatCategoryName(post.category);
+
                 return `
                 <article class="post-card">
-                    <div class="post-image">
+                    <div class="post-image" style="position:relative;">
                         ${post.image ? `<img src="${post.image}" alt="${post.title}">` : '<div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center; background:#f1f5f9; font-size:2rem;">💎</div>'}
+                        <span style="position:absolute; top:12px; left:12px; background:rgba(15,23,42,0.85); backdrop-filter:blur(4px); color:white; font-size:0.75rem; font-weight:700; padding:4px 10px; border-radius:6px; text-transform:uppercase; letter-spacing:0.5px;">${catText}</span>
                     </div>
                     <div class="post-content">
                         <h3>${post.title}</h3>
@@ -705,10 +746,10 @@
             const container = document.getElementById('trendingPosts');
             if (!container) return;
 
-            const trending = latestPosts.slice(0, 5);
+            const trending = allPosts.slice(0, 6);
             container.innerHTML = trending.map(post => `
                 <div class="related-post" style="padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
-                    <a href="${post.url}" style="color: #334155; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;">
+                    <a href="${post.url}" style="color: #334155; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; display: block; line-height: 1.4;">
                         ${post.title}
                     </a>
                 </div>
@@ -720,13 +761,8 @@
         }
 
         function init() {
-            // Render posts for each category (3 posts each)
-            renderPosts(latestPosts.slice(0, 3), 'latest-posts-grid');
-            renderPosts(discountPosts.slice(0, 3), 'discount-posts-grid');
-            renderPosts(reviewsPosts.slice(0, 3), 'reviews-posts-grid');
-            renderPosts(customAppPosts.slice(0, 3), 'custom-app-posts-grid');
-
-            // Render trending sidebar
+            renderCategoryButtons();
+            renderMainGrid(allPosts);
             renderTrending();
         }
 
