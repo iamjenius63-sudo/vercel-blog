@@ -518,7 +518,7 @@
                 <div class="section-header"
                     style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
                     <h2>Latest Posts</h2>
-                    <a href="/category/general.html" class="view-all">View All →</a>
+                    <a href="#latest-posts-grid" class="view-all">View All ↓</a>
                 </div>
                 <div class="posts-grid" id="latest-posts-grid">
                     <!-- Posts rendered by JS -->
@@ -530,7 +530,7 @@
                 <div class="section-header"
                     style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
                     <h2>Discount Deals</h2>
-                    <a href="/category/discount.html" class="view-all">View All →</a>
+                    <a href="#discount-posts-grid" class="view-all">View All ↓</a>
                 </div>
                 <div class="posts-grid" id="discount-posts-grid">
                     <!-- Posts rendered by JS -->
@@ -542,7 +542,7 @@
                 <div class="section-header"
                     style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
                     <h2>Software Reviews</h2>
-                    <a href="/category/reviews.html" class="view-all">View All →</a>
+                    <a href="#reviews-posts-grid" class="view-all">View All ↓</a>
                 </div>
                 <div class="posts-grid" id="reviews-posts-grid">
                     <!-- Posts rendered by JS -->
@@ -554,7 +554,7 @@
                 <div class="section-header"
                     style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: center !important; width: 100% !important;">
                     <h2>Custom App</h2>
-                    <a href="/category/custom-app.html" class="view-all">View All →</a>
+                    <a href="#custom-app-posts-grid" class="view-all">View All ↓</a>
                 </div>
                 <div class="posts-grid" id="custom-app-posts-grid">
                     <!-- Posts rendered by JS -->
@@ -615,7 +615,7 @@
     "url": "https://coupon-code-review.vercel.app//seotools/neuronwriter-vs-alternative-solutions.html",
     "date": "August 24, 2026",
     "readTime": 5,
-    "views": 673
+    "views": 103
   },
   {
     "image": "https://softreviewed-images.pages.dev/neuronwriter/banner-35317c971c63.jpg",
@@ -625,7 +625,7 @@
     "url": "https://coupon-code-review.vercel.app//seotools/neuronwriter-vs-surfer-seo-comparison.html",
     "date": "August 24, 2026",
     "readTime": 5,
-    "views": 85
+    "views": 624
   },
   {
     "image": "https://coupon-code-review.vercel.app//images/default.jpg",
@@ -635,7 +635,7 @@
     "url": "https://coupon-code-review.vercel.app//seotools/probe-test-neuronwriter.html",
     "date": "August 24, 2026",
     "readTime": 5,
-    "views": 698
+    "views": 42
   }
 ];
         const discountPosts = [];
@@ -683,19 +683,22 @@
 
             if (section) section.style.display = 'block';
 
-            grid.innerHTML = postsToRender.map(post => `
+            grid.innerHTML = postsToRender.map(post => {
+                const excerptText = (post.excerpt && post.excerpt !== 'undefined') ? post.excerpt : ((post.description && post.description !== 'undefined') ? post.description : '');
+                const dateText = (post.date && post.date !== 'undefined') ? post.date : 'Recent';
+                return `
                 <article class="post-card">
                     <div class="post-image">
                         ${post.image ? `<img src="${post.image}" alt="${post.title}">` : '<div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center; background:#f1f5f9; font-size:2rem;">💎</div>'}
                     </div>
                     <div class="post-content">
                         <h3>${post.title}</h3>
-                        <div class="post-meta">📅 ${post.date}</div>
-                        <p class="post-excerpt">${post.excerpt}</p>
+                        <div class="post-meta">📅 ${dateText}</div>
+                        ${excerptText ? `<p class="post-excerpt">${excerptText}</p>` : ''}
                         <a href="${post.url}" class="read-more">Read More →</a>
                     </div>
                 </article>
-            `).join('');
+            `;}).join('');
         }
 
         function renderTrending() {
